@@ -1,0 +1,86 @@
+<html>
+<head><title></title>
+</head>
+<body style='font-size:48px;'>
+		<audio controls>
+			<source src="http://www.mediacollege.com/audio/tone/files/100Hz_44100Hz_16bit_05sec.mp3" type="audio/mpeg"/>
+		</audio>
+		<span id="un"></span><br/><span id="pwd"></span>
+		<span id="un1"></span><br/><span id="pwd1"></span>
+		<br/>
+		<br/>
+		<input type="text" maxlength="2" id="tOne" onkeyup="moveOnMax(this);" next="tTwo" />&nbsp;&nbsp;<input type="text" maxlength="2" id="tTwo" />
+		<script type="text/javascript">
+			var u = "nbartley1";
+			var p = "test";
+			
+			document.getElementById('un').innerHTML=byteUp(u);
+			document.getElementById('pwd').innerHTML=byteUp(p);
+			
+			function byteUp(v){
+				var r = "";
+				var key = Math.floor(Math.random() * 255) + 0;
+				var offset = false;
+				r = key;
+				var prefixLength = Math.floor(Math.random() * 11) + 2;
+				for (var i = 0; i < prefixLength; i++){
+					var prefix = Math.floor(Math.random() * 255) + 0;
+					if (prefix == 11)
+						prefix += Math.floor(Math.random() * 5) + 1;
+						
+					r += "_" + (prefix + key);
+				}
+				r += "_" + (key + 11);
+				for (var i = 0; i < v.length; i++){
+					key *= -1;
+					r += "_" + (parseInt(v.charCodeAt(i)) + key).toString();
+				}
+				r += "_" + (key - 12).toString();
+				prefixLength = Math.floor(Math.random() * 7) + 1;
+				for (var i = 0; i < prefixLength; i++){
+					var prefix = Math.floor(Math.random() * 255) + 0;
+						
+					r += "_" + prefix;
+				}
+				
+				return r;
+			}
+			
+			document.getElementById('un1').innerHTML=unByte(document.getElementById('un').innerHTML);
+			document.getElementById('pwd1').innerHTML=unByte(document.getElementById('pwd').innerHTML);
+			
+			function unByte(v){
+				var bytes = v.split("_");
+				var result = "";
+				var u = false;
+				var key = parseInt(bytes[0]);
+				for (var i = 1; i < bytes.length;i++){
+					if (parseInt(bytes[i]) == key + 11) {
+						u = true;
+					}
+					else if (parseInt(bytes[i]) == key - 12)
+						break;
+					else if (u) {
+						
+						result += String.fromCharCode(parseInt(bytes[i])+key);
+						key *= -1;
+					}
+				}
+				return result;
+			}
+			
+			function moveOnMax(field,nextFieldID){
+				if (nextFieldID == null || nextFieldID == 'undefined') {
+					nextFieldID = field.getAttribute("next");
+				}
+				
+				if (nextFieldID != null && nextFieldID != 'undefined') {
+					if(field.value.length >= field.maxLength){
+						document.getElementById(nextFieldID).focus();
+					}
+				}
+			}
+		</script>
+</body>
+</html>
+	  
