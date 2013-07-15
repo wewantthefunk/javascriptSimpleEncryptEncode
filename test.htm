@@ -68,18 +68,6 @@
 				}
 				return result;
 			}
-			
-			function moveOnMax(field,nextFieldID){
-				if (nextFieldID == null || nextFieldID == 'undefined') {
-					nextFieldID = field.getAttribute("next");
-				}
-				
-				if (nextFieldID != null && nextFieldID != 'undefined') {
-					if(field.value.length >= field.maxLength){
-						document.getElementById(nextFieldID).focus();
-					}
-				}
-			}
 		</script>
 </body>
 </html>
