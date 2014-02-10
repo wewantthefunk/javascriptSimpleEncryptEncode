@@ -2,18 +2,17 @@
 <head><title></title>
 </head>
 <body style='font-size:16px;'>
-		<span id="un"></span><br/><span id="pwd"></span>
+		<span id="un"></span><br/><span id="pwd"></span><br/></br>
 		<span id="un1"></span><br/><span id="pwd1"></span>
 		<br/>
 		<br/>
-		<input type="text" maxlength="2" id="tOne" onkeyup="moveOnMax(this);" next="tTwo" />&nbsp;&nbsp;<input type="text" maxlength="2" id="tTwo" />
 		<script type="text/javascript">
-			var u = "nbartley1";
+			var u = "testUser";
 			var p = "test";
-			
+
 			document.getElementById('un').innerHTML=byteUp(u);
 			document.getElementById('pwd').innerHTML=byteUp(p);
-			
+
 			function byteUp(v){
 				var r = "";
 				var key = Math.floor(Math.random() * 255) + 0;
@@ -24,7 +23,7 @@
 					var prefix = Math.floor(Math.random() * 255) + 0;
 					if (prefix == 11)
 						prefix += Math.floor(Math.random() * 5) + 1;
-						
+
 					r += "_" + (prefix + key);
 				}
 				r += "_" + (key + 11);
@@ -36,16 +35,16 @@
 				prefixLength = Math.floor(Math.random() * 7) + 1;
 				for (var i = 0; i < prefixLength; i++){
 					var prefix = Math.floor(Math.random() * 255) + 0;
-						
+
 					r += "_" + prefix;
 				}
-				
+
 				return r;
 			}
-			
+
 			document.getElementById('un1').innerHTML=unByte(document.getElementById('un').innerHTML);
 			document.getElementById('pwd1').innerHTML=unByte(document.getElementById('pwd').innerHTML);
-			
+
 			function unByte(v){
 				var bytes = v.split("_");
 				var result = "";
@@ -58,7 +57,7 @@
 					else if (parseInt(bytes[i]) == key - 12)
 						break;
 					else if (u) {
-						
+
 						result += String.fromCharCode(parseInt(bytes[i])+key);
 						key *= -1;
 					}
@@ -68,4 +67,3 @@
 		</script>
 </body>
 </html>
-	  
